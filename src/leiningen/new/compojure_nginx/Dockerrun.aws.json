@@ -1,0 +1,4 @@
+{
+  "AWSEBDockerrunVersion": "1",
+  "Logging": "/usr/local/nginx/logs"
+}

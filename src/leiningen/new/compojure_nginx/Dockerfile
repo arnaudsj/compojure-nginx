@@ -1,6 +1,6 @@
 
 FROM debian:7.5
-MAINTAINER Sébastien Arnaud, sarnaud@opinionlab.com
+MAINTAINER Sébastien Arnaud, arnaudsj@gmail.com
 
 #
 RUN apt-get update
@@ -37,15 +37,13 @@ RUN HTTP_CLIENT="wget --no-check-certificate -O" lein
 
 # Compile and install nginx-clojure
 RUN cd /src/nginx-1.6.0/nginx-clojure && lein jar
-RUN mkdir /usr/local/nginx/jars && cp /src/nginx-1.6.0/nginx-clojure/target/nginx-clojure-0.2.3.jar /usr/local/nginx/
+RUN mkdir /usr/local/nginx/jars && cp /src/nginx-1.6.0/nginx-clojure/target/nginx-clojure-0.2.3.jar /usr/local/nginx/jars/
 
-#ADD private/clj-nginx.conf /src/clj-nginx.conf
-#RUN cd /src; sed -i "/http {/r clj-nginx.conf" /usr/local/nginx/conf/nginx.conf
-#RUN cat /usr/local/nginx/conf/nginx.conf
-
+# Setup default nginx config with nginx-clj params
 ADD private/nginx.conf /usr/local/nginx/conf/nginx.conf
-ADD target/{{name}}-0.1.0-SNAPSHOT-standalone.jar /usr/local/nginx/jars/{{name}}-0.1.0.jar
 
+# Copy the local uberjar for our compojure project
+ADD target/{{name}}-0.1.0-SNAPSHOT-standalone.jar /usr/local/nginx/jars/{{name}}-0.1.0.jar
 
 EXPOSE 80
 

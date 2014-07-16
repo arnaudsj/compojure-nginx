@@ -1,4 +1,4 @@
-(ns leiningen.new.compojure-nginx-clj-docker-eb-template
+(ns leiningen.new.compojure-nginx
   (:use [leiningen.new.templates :only [renderer sanitize year ->files]]
         [leinjacker.utils :only [lein-generation]]))
 
@@ -6,15 +6,15 @@
   (if (< (lein-generation) 2)
     (throw (new Exception "Leiningen v2 is required..."))))
 
-(defn compojure-app
+(defn compojure-nginx
   "Create a new Compojure project"
   [name]
   (check-lein-version)
   (let [data {:name name
               :sanitized (sanitize name)
               :year (year)}
-        render #((renderer "compojure_app") % data)]
-    (println "Generating a lovely new Compojure project named" (str name "..."))
+        render #((renderer "compojure_nginx") % data)]
+    (println "Generating a lovely new Compojure (nginx-clj) project named" (str name "..."))
     (->files data
              [".gitignore"  (render "gitignore")]
              ["project.clj" (render "project.clj")]

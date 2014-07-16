@@ -1,6 +1,6 @@
-(defproject compojure-nginx-clj-docker-eb-template/lein-template "0.4.2"
+(defproject compojure-nginx/lein-template "0.4.2"
   :description "Compojure project template with nginx-clj support via docker for Leiningen"
-  :url "https://github.com/arnaudsj/compojure-nginx-clj-docker-eb-template"
+  :url "https://github.com/arnaudsj/compojure-nginx"
   :eval-in-leiningen true
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
