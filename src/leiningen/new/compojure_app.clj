@@ -1,4 +1,4 @@
-(ns leiningen.new.compojure-app
+(ns leiningen.new.compojure-nginx-clj-docker-eb-template
   (:use [leiningen.new.templates :only [renderer sanitize year ->files]]
         [leinjacker.utils :only [lein-generation]]))
 
@@ -27,4 +27,7 @@
              "resources/public/js"
              "resources/public/img"
              "src/{{sanitized}}/models"
-             ["test/{{sanitized}}/test/handler.clj" (render "handler_test.clj")])))
+             ["test/{{sanitized}}/test/handler.clj" (render "handler_test.clj")]
+             ["Dockerfile"                          (render "Dockerfile")]
+             ["private/nginx.conf"                  (render "nginx.conf")]
+             )))
